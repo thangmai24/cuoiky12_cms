@@ -9,7 +9,7 @@ services:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_NAME: wordpress_602_core
     depends_on:
       - db
 
@@ -18,7 +18,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: wordpress
+      MYSQL_DATABASE: wordpress_602_core
     ports:
       - "3306:3306"
     volumes:
