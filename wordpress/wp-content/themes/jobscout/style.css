@@ -2587,6 +2587,7 @@ section.top-job-section .section-title {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
+          flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -2670,10 +2671,12 @@ section.top-job-section .section-title {
 }
 
 .top-job-section .row div.job_listings article .job-tags-wrapper {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: flex;
+  background-color: #e0e0e0;
   flex-wrap: wrap;
-  gap: 8px;
+  padding-left: 4px;
+  gap: 4px;
 }
 
 .top-job-section .row div.job_listings article .job-type-tag,
@@ -2683,13 +2686,32 @@ section.top-job-section .section-title {
   background: #e0e0e0;
   color: #555;
   font-size: 0.8em;
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 6px 0px;
+ 
   font-weight: 500;
   border: none;
+
   text-transform: none;
   letter-spacing: 0;
 }
+
+.top-job-section .row div.job_listings article .job-type-tag {
+    position: relative;
+    /* padding-right: 10px; */
+    margin-right: 10px;
+}
+
+.top-job-section .row div.job_listings article .job-type-tag::after {
+    content: "|";
+    position: absolute;
+    right: -12%;
+    color: #ccc; /* Màu của đường gạch */
+}
+
+.top-job-section .row div.job_listings article .job-type-tag:last-child::after {
+    content: none;
+}
+
 
 .top-job-section .row div.job_listings article .company-name {
   font-size: 0.9em;
@@ -9010,9 +9032,12 @@ RESPONSIVE STYLESHEET
   width: 100%;
 }
 
-.job-short-description { margin-left: -40%; }
+/* .job-short-description { margin-left: -40%; } */
 .job-short-description ul{
   margin-left: 0;
   padding-left: 1rem;          /* chỉnh cho “sát trái” hơn trong thẻ */
   list-style-position: inside; /* hoặc: list-style-type: none; */
+}
+.job-main{
+  display: flex;
 }
