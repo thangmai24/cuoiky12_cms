@@ -10,7 +10,7 @@
  */
     /**
      * Doctype Hook
-     * 
+     *  
      * @hooked jobscout_doctype
     */
     do_action( 'jobscout_doctype' );
