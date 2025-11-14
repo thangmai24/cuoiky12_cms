@@ -16,7 +16,7 @@ $ed_blog      = get_theme_mod( 'ed_blog', true );
 $args = array(
     'post_type'           => 'post',
     'post_status'         => 'publish',
-    'posts_per_page'      => 3,
+    'posts_per_page'      => 4,
     'ignore_sticky_posts' => true
 );
 
@@ -36,29 +36,27 @@ if( $ed_blog && ( $blog_heading || $sub_title || $qry->have_posts() ) ){ ?>
                 while( $qry->have_posts() ){
                     $qry->the_post(); ?>
                     <article class="post">
-        				<figure class="post-thumbnail">
+                        <figure class="post-thumbnail">
                             <a href="<?php the_permalink(); ?>" class="post-thumbnail">
                             <?php 
                                 if( has_post_thumbnail() ){
                                     the_post_thumbnail( 'jobscout-blog', array( 'itemprop' => 'image' ) );
                                 }else{ 
                                     jobscout_fallback_svg_image( 'jobscout-blog' ); 
-                                }                            
-                            ?>                        
+                                }
+                            ?>
                             </a>
                         </figure>
-                        <header class="entry-header">
-                            <div class="entry-meta">
-                                <?php 
-                                    if( ! $hide_author ) jobscout_posted_by(); 
-                                    if( ! $hide_date ) jobscout_posted_on();
-                                ?> 
-                            </div>
+                        <div class="article-content">
                             <h3 class="entry-title">
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h3>
-                        </header>
-        			</article>			
+                            <div class="entry-summary">
+                                <p><?php echo wp_kses_post( wp_trim_words( get_the_excerpt(), 25, '&hellip;' ) ); ?></p>
+                            </div>
+                            <a class="read-more" href="<?php the_permalink(); ?>"><?php echo esc_html__( 'Read More', 'jobscout' ); ?></a>
+                        </div>
+                    </article>
         			<?php 
                 }
                 wp_reset_postdata();
