@@ -23,7 +23,25 @@ get_header(); ?>
         do_action( 'jobscout_before_posts_content' );
         ?>
         
+        <?php $is_blog_listing = is_home(); ?>
+
+        <?php if ( $is_blog_listing ) : ?>
+            <section class="blog-hero-banner" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'images/banner-image.jpg' ) ); ?>');">
+                <div class="blog-hero-inner">
+                    <p class="eyebrow"><?php esc_html_e( 'Latest Updates', 'jobscout' ); ?></p>
+                    <h1 class="hero-title"><?php esc_html_e( 'PDS News', 'jobscout' ); ?></h1>
+                </div>
+            </section>
+        <?php endif; ?>
+
         <main id="main" class="site-main">
+
+        <?php if ( $is_blog_listing ) : ?>
+            <div class="blog-grid-header">
+                <p class="section-label"><?php esc_html_e( 'Newest Blog Entries', 'jobscout' ); ?></p>
+            </div>
+            <div class="blog-grid">
+        <?php endif; ?>
 
 		<?php
 		if ( have_posts() ) :
@@ -46,6 +64,10 @@ get_header(); ?>
 
 		endif; ?>
 
+        <?php if ( $is_blog_listing ) : ?>
+            </div><!-- .blog-grid -->
+        <?php endif; ?>
+
 		</main><!-- #main -->
         
         <?php
@@ -59,5 +81,7 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+if ( ! $is_blog_listing ) {
+    get_sidebar();
+}
 get_footer();
