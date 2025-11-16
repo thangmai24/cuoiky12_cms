@@ -86,3 +86,34 @@ if( jobscout_is_woocommerce_activated() ){
 if( jobscout_is_wp_job_manager_activated() ) :
 	require get_template_directory() . '/inc/wp-job-manager-filters.php';
 endif;
+
+	/**
+	 * One-time assign Contact Page template to page ID 968 if not set.
+	 * Runs only in admin and only once (stores flag in options table).
+	 */
+	function jobscout_assign_contact_template_once() {
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// Avoid running multiple times
+		if ( get_option( 'jobscout_contact_template_assigned' ) ) {
+			return;
+		}
+
+		$page_id = 968;
+		$template = 'page-templates/template-contact.php';
+
+		$current = get_post_meta( $page_id, '_wp_page_template', true );
+		if ( $current !== $template ) {
+			update_post_meta( $page_id, '_wp_page_template', $template );
+		}
+
+		// Set flag so we don't run again
+		update_option( 'jobscout_contact_template_assigned', 1 );
+	}
+	add_action( 'admin_init', 'jobscout_assign_contact_template_once' );

@@ -9137,3 +9137,56 @@ RESPONSIVE STYLESHEET
 .job-main{
   display: flex;
 }
+.page-template-template-contact #page #acc-content #content{
+  margin: 0;
+}
+/* Contact template additional styles */
+.page-template-template-contact #page #acc-content #content .container{
+  margin: 0;
+  max-width: 100%;
+}
+.contact-hero{ position: relative; background-size: cover; background-position: center center; }
+.contact-hero-overlay{ position: absolute; left:0; right:0; top:0; bottom:0; background: rgba(0,0,0,0.45); }
+.contact-hero .container{ position: relative; z-index: 2; }
+.contact-hero-title{ color: #fff; font-size: 42px; text-align: center; font-weight:800; padding: 90px 0; letter-spacing:2px; }
+.contact-address-strip{ background: #fff; padding: 36px 0; text-align: center; }
+.contact-address-title{ margin: 0; font-weight: 700; font-size: 18px; }
+.contact-address-text{ margin: 6px 0 0; color: black;     font-weight: 500; }
+.contact-info-section{ background: #f2f2f2; padding: 40px 0; }
+.contact-info-grid{ display: flex; gap: 30px; align-items: flex-start; justify-content: space-between;
+    padding: 0 18%;
+ }
+.contact-info-block {
+    flex: 1 1 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* canh giữa theo chiều dọc */
+    align-items: center;     /* canh giữa theo chiều ngang */
+    text-align: center;
+}
+.contact-info-block h4{ margin-bottom: 6px; font-weight: 800; }
+.contact-info-block .muted{ color: black;     font-weight: 500; }
+.contact-phone, .contact-phone-small{ margin-top: 12px; font-weight: 600; }
+.contact-note{ margin-top: 18px; color: black; font-size: 0.95em;     width: 277px;    font-weight: 500; }
+.contact-info-block .muted a {
+    color: orange;
+    text-decoration-line: underline;
+  
+}
+.contact-address-inner{
+      line-height: 3.5;
+      margin: 28px 0;
+}
+
+@media (max-width: 900px){
+  .contact-info-grid{ flex-direction: column; }
+  .contact-hero-title{ padding: 40px 0; font-size: 28px; }
+}
+
+@media screen and (max-width: 1199px) {
+    .page-template-template-contact #page #acc-content #content .container {
+        max-width: 100%;
+        padding: 0;
+    }
+}
