@@ -34,6 +34,10 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php
-get_sidebar();
+// Do not load sidebar on Contact page (by slug 'contact' or IDs 135, 968)
+// Add any page IDs here that should display full-width without the sidebar.
+if ( ! is_page( array( 'contact', 135, 968 ) ) ) {
+	get_sidebar();
+}
+get_footer();
 get_footer();
