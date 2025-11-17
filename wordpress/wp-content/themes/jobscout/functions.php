@@ -105,6 +105,7 @@ endif;
 			return;
 		}
 
+		// Assign Contact template to page 968
 		$page_id = 968;
 		$template = 'page-templates/template-contact.php';
 
@@ -115,5 +116,13 @@ endif;
 
 		// Set flag so we don't run again
 		update_option( 'jobscout_contact_template_assigned', 1 );
+    
+		// Also assign Jobs All template to page ID 10 (one-time)
+		$jobs_page_id = 10;
+		$jobs_template = 'page-templates/template-jobsall.php';
+		$current_jobs = get_post_meta( $jobs_page_id, '_wp_page_template', true );
+		if ( $current_jobs !== $jobs_template ) {
+			update_post_meta( $jobs_page_id, '_wp_page_template', $jobs_template );
+		}
 	}
 	add_action( 'admin_init', 'jobscout_assign_contact_template_once' );
