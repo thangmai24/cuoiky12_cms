@@ -9584,3 +9584,8 @@ RESPONSIVE STYLESHEET
         padding: 0;
     }
 }
+
+/* Jobs All template styles */
+.page-id-954 .site #acc-content #content .container{
+    max-width: 100%;
+}

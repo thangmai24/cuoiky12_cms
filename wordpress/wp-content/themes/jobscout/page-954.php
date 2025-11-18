@@ -5,6 +5,15 @@
 get_header();
 ?>
 
+    <!-- Hero banner -->
+    <section class="jobs-hero" style="background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/images/about-banner.jpg');">
+        <div class="jobs-hero-overlay"></div>
+        <div class="container">
+            <h1 class="jobs-hero-title" style="color:transparent">CAREER WITH US</h1>
+        </div>
+    </section>
+
+
 <div class="page-template-about">
     <div class="about-container">
         <!-- Title Section -->
@@ -103,9 +112,10 @@ get_header();
 }
 
 .about-container {
+    position: relative;
     max-width: 100%;
     margin: 0;
-    padding: 40px 20px;
+    padding: 40px 167px;
 }
 
 /* Title Section */
@@ -118,6 +128,51 @@ get_header();
     font-size: 48px;
     font-weight: 700;
     color: #333;
+
+/* Banner styles */
+.about-banner {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.about-banner__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+    filter: brightness(0.55);
+}
+.about-banner__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+.about-banner__title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 768px) {
+    .about-banner { height: 220px; }
+    .about-banner__title { font-size: 20px; }
+}
     margin: 0;
     letter-spacing: 2px;
 }
@@ -139,7 +194,6 @@ get_header();
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: 8px;
 }
 
 .about-image {
@@ -274,6 +328,15 @@ get_header();
         padding: 40px 20px;
         width: calc(100% + 40px);
     }
+}
+
+.about-container .about-middle-section{
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;       /* full màn hình */
+    margin-left: -50vw; /* kéo ra trái full */
+    margin-right: -50vw;/* kéo ra phải full */
 }
 </style>
 

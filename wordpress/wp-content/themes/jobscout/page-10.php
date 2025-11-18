@@ -11,7 +11,7 @@ get_header();
     <section class="jobs-hero" style="background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/images/banner_jobsall.jpg');">
         <div class="jobs-hero-overlay"></div>
         <div class="container">
-            <h1 class="jobs-hero-title">CAREER WITH US</h1>
+            <h1 class="jobs-hero-title" style="color:transparent">CAREER WITH US</h1>
         </div>
     </section>
 
