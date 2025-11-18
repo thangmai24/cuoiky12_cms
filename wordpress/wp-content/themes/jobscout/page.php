@@ -35,8 +35,8 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-// Do not load sidebar on Contact, Contact ID 135, page ID 968, or Jobs page ID 10
-if ( ! is_page( array( 'contact', 135, 968, 10 ) ) ) {
+// Do not load sidebar on Contact, Contact ID 135, page ID 968, or Jobs page ID 10, 954 la about
+if ( ! is_page( array( 'contact', 135, 968, 10, 954 ) ) ) {
 	get_sidebar();
 }
 
