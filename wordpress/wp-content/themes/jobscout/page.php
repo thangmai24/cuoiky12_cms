@@ -35,5 +35,9 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+// Do not load sidebar on Contact, Contact ID 135, page ID 968, or Jobs page ID 10
+if ( ! is_page( array( 'contact', 135, 968, 10 ) ) ) {
+	get_sidebar();
+}
+
 get_footer();
