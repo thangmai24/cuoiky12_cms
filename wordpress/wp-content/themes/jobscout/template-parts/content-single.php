@@ -9,21 +9,17 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php 
-        /**
-         * 
-         * @hooked jobscout_entry_header - 10
-         * @hooked jobscout_post_thumbnail - 15
-        */
-        do_action( 'jobscout_before_single_post_entry_content' );
-    
-
-        /**
-         * @hooked jobscout_entry_content - 15
-         * @hooked jobscout_entry_footer  - 20
-        */
-        do_action( 'jobscout_single_post_entry_content' );
-        
-    ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'news-single-wrapper' ); ?>>
+    <div class="news-single__content entry-content" itemprop="text">
+        <?php
+        the_content();
+        wp_link_pages(
+            array(
+                'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'jobscout' ),
+                'after'  => '</div>',
+            )
+        );
+        ?>
+    </div>
 </article><!-- #post-<?php the_ID(); ?> -->
+

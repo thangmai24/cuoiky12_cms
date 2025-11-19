@@ -87,6 +87,14 @@ if( jobscout_is_wp_job_manager_activated() ) :
 	require get_template_directory() . '/inc/wp-job-manager-filters.php';
 endif;
 
+/**
+ * Customize single post layout.
+ */
+function jobscout_child_customize_single_layout() {
+	remove_action( 'jobscout_after_post_content', 'jobscout_navigation', 10 );
+}
+add_action( 'after_setup_theme', 'jobscout_child_customize_single_layout' );
+
 	/**
 	 * One-time assign Contact Page template to page ID 968 if not set.
 	 * Runs only in admin and only once (stores flag in options table).
