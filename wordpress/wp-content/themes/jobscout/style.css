@@ -9967,7 +9967,14 @@ RESPONSIVE STYLESHEET
     margin: 0 0 5px 0;
     line-height: 1.4;
 }
-
+.job-breadcrumb {
+  margin-top: 15px;
+}
+.job-breadcrumb .container{
+  margin: 0!important;
+  gap: 15px;
+  flex-direction: row!important;
+}
 .job-card-title a {
     color: #333;
     text-decoration: none;

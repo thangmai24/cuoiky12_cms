@@ -10,6 +10,16 @@ $job_id = get_the_ID();
 $company_name = get_post_meta( $job_id, '_company_name', true );
 $location = get_post_meta( $job_id, '_job_location', true );
 ?>
+<!-- Breadcrumb Navigation -->
+<div class="job-breadcrumb">
+	<div class="container">
+		<a href="<?php echo esc_url( home_url() ); ?>">Home</a>
+		<span class="separator">/</span>
+		<a href="<?php echo esc_url( home_url( '?post_type=job_listing' ) ); ?>">All Jobs</a>
+		<span class="separator">/</span>
+		<span class="current"><?php the_title(); ?></span>
+	</div>
+</div>
 <article id="post-<?php the_ID(); ?>" <?php post_class('job-detail-wrapper'); ?>>
 	
 	<!-- Job Detail Header with Logo, Title, and Meta -->
