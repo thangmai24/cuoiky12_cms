@@ -35,7 +35,7 @@ if ($post_slug) {
 
 
           <input type="text" id="search_keywords" name="search_keywords"
-            placeholder="<?php esc_attr_e('Tìm kiếm theo công việc, công ty, kỹ năng', 'jobscout'); ?>">
+            placeholder="<?php esc_attr_e('Search by job, companies, skills', 'jobscout'); ?>">
         </div>
       </div>
 
@@ -47,7 +47,7 @@ if ($post_slug) {
               d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5a2.5 2.5 0 112.5-2.5 2.5 2.5 0 01-2.5 2.5z" />
           </svg>
           <select id="search_location" name="search_location">
-            <option value=""><?php esc_html_e('Tất cả địa điểm', 'jobscout'); ?></option>
+            <option value=""><?php esc_html_e('Tokyo', 'jobscout'); ?></option>
             <?php
             global $wpdb;
             $locations = $wpdb->get_col("
@@ -82,7 +82,7 @@ if ($post_slug) {
       <?php } ?>
 
       <div class="search_submit">
-        <input type="submit" value="<?php esc_attr_e('Tìm việc', 'jobscout'); ?>" />
+        <input type="submit" value="<?php esc_attr_e('SEARCH JOB', 'jobscout'); ?>" />
       </div>
 
     </div>
