@@ -9789,7 +9789,7 @@ RESPONSIVE STYLESHEET
   z-index: 2;
 }
 .contact-hero-title {
-  color: #fff;
+  color: transparent;
   font-size: 42px;
   text-align: center;
   font-weight: 800;
