@@ -47,20 +47,21 @@ if ($post_slug) {
               d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5a2.5 2.5 0 112.5-2.5 2.5 2.5 0 01-2.5 2.5z" />
           </svg>
           <select id="search_location" name="search_location">
-            <option value=""><?php esc_html_e('Tokyo', 'jobscout'); ?></option>
             <?php
-            global $wpdb;
-            $locations = $wpdb->get_col("
-        SELECT DISTINCT meta_value 
-        FROM {$wpdb->postmeta}
-        WHERE meta_key = '_job_location'
-        AND meta_value != ''
-        ORDER BY meta_value ASC
-    ");
-
-            if (!empty($locations)) {
-              foreach ($locations as $loc) {
-                printf('<option value="%1$s">%2$s</option>', esc_attr($loc), esc_html($loc));
+            // Get default location and managed locations from admin
+            $default_location = jobscout_get_default_location();
+            $managed_locations = jobscout_get_managed_locations();
+            
+            // Display default location as first option
+            printf('<option value="">%s</option>', esc_html($default_location));
+            
+            // Display managed locations from admin (enabled locations only)
+            if (!empty($managed_locations)) {
+              foreach ($managed_locations as $location_key => $display_name) {
+                // Skip if it's the same as default location
+                if ($location_key !== $default_location && $display_name !== $default_location) {
+                  printf('<option value="%1$s">%2$s</option>', esc_attr($location_key), esc_html($display_name));
+                }
               }
             }
             ?>

@@ -88,6 +88,11 @@ if( jobscout_is_wp_job_manager_activated() ) :
 endif;
 
 /**
+ * Location Manager for Job Search Form
+ */
+require get_template_directory() . '/inc/location-manager.php';
+
+/**
  * Customize single post layout.
  */
 function jobscout_child_customize_single_layout() {
