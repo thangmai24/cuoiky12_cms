@@ -22,7 +22,7 @@ function jobscout_customize_register_general_header( $wp_customize ) {
     $wp_customize->add_setting(
         'post_job_label',
         array(
-            'default'           => __( 'Post Jobs', 'jobscout' ),
+            'default'           => __( 'SUBMIT JOB', 'jobscout' ),
             'sanitize_callback' => 'sanitize_text_field',
             'transport'         => 'postMessage' 
         )

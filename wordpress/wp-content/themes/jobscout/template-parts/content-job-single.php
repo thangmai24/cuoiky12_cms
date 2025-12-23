@@ -72,9 +72,8 @@ $location = get_post_meta( $job_id, '_job_location', true );
 		
 		<!-- Share and Apply Buttons -->
 		<div class="job-actions">
-			<button class="btn-share">SHARE</button>
-                        <button class="btn-apply"><a href="#apply">APPLY JOB</a></button>
-			
+			<button type="button" class="btn-share" data-url="<?php echo esc_url( get_permalink() ); ?>">SHARE</button>
+			<button type="button" class="btn-apply" data-target="#apply">APPLY JOB</button>
 		</div>
 	</div>
 	
@@ -152,6 +151,37 @@ $location = get_post_meta( $job_id, '_job_location', true );
 	</div>
 	
 </article> <!-- #article -->
+
+<!-- Apply Section -->
+<section id="apply" class="job-apply-section">
+	<div class="container">
+		<div class="job-apply-wrapper">
+			<h2 class="section-title">Apply For This Job</h2>
+			<div class="job-apply-body">
+				<form id="job-apply-form" class="job-apply-form" method="post">
+					<?php wp_nonce_field( 'jobscout_apply_nonce', 'jobscout_apply_nonce_field' ); ?>
+					<input type="hidden" name="job_id" value="<?php echo esc_attr( get_the_ID() ); ?>">
+					<p>
+						<label for="applicant_name"><?php esc_html_e( 'Name', 'jobscout' ); ?></label>
+						<input type="text" id="applicant_name" name="name" required>
+					</p>
+					<p>
+						<label for="applicant_email"><?php esc_html_e( 'Email', 'jobscout' ); ?></label>
+						<input type="email" id="applicant_email" name="email" required>
+					</p>
+					<p>
+						<label for="applicant_message"><?php esc_html_e( 'Message', 'jobscout' ); ?></label>
+						<textarea id="applicant_message" name="message" rows="6" required></textarea>
+					</p>
+					<p>
+						<button type="submit" class="btn-apply-submit"><?php esc_html_e( 'Submit Application', 'jobscout' ); ?></button>
+						<span class="apply-status" aria-live="polite"></span>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- Other Jobs Section -->
 <section class="related-jobs-section">

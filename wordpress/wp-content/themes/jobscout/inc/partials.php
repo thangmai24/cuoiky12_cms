@@ -37,7 +37,7 @@ function jobscout_customize_partial_blogdescription() {
  * Header post job button
  */
 function jobscout_get_header_post_job_label(){
-    $btn_label = get_theme_mod( 'post_job_label', __( 'Post Jobs', 'jobscout' ) );
+    $btn_label = get_theme_mod( 'post_job_label', __( 'SUBMIT JOB', 'jobscout' ) );
 
     if ( $btn_label ){
         return esc_html( $btn_label );

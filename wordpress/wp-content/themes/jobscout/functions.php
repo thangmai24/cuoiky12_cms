@@ -134,3 +134,65 @@ add_action( 'after_setup_theme', 'jobscout_child_customize_single_layout' );
 		}
 	}
 	add_action( 'admin_init', 'jobscout_assign_contact_template_once' );
+
+/**
+ * Enqueue job detail script and register AJAX handler
+ */
+function jobscout_enqueue_job_detail_script(){
+	if ( is_singular( 'job_listing' ) ){
+		wp_enqueue_script( 'jobscout-job-detail', get_template_directory_uri() . '/js/job-detail.js', array( 'jquery' ), JOBSCOUT_THEME_VERSION, true );
+		wp_localize_script( 'jobscout-job-detail', 'jobscout_job_detail', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'jobscout_apply_nonce' ),
+		) );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'jobscout_enqueue_job_detail_script' );
+
+function jobscout_handle_job_application(){
+	check_ajax_referer( 'jobscout_apply_nonce', 'nonce' );
+
+	$name    = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+	$email   = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+	$message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
+	$job_id  = isset( $_POST['job_id'] ) ? absint( $_POST['job_id'] ) : 0;
+
+	if ( empty( $name ) || empty( $email ) || ! is_email( $email ) || empty( $job_id ) ) {
+		wp_send_json_error( array( 'message' => __( 'Please provide a valid name, email and job reference.', 'jobscout' ) ) );
+	}
+
+	$job_title = get_the_title( $job_id );
+	$job_link  = get_permalink( $job_id );
+
+	$possible_keys = array( '_application', '_application_email', '_company_email', '_company_email_address' );
+	$to = '';
+	foreach ( $possible_keys as $k ){
+		$val = get_post_meta( $job_id, $k, true );
+		if ( is_email( $val ) ){
+			$to = $val;
+			break;
+		}
+	}
+
+	if ( empty( $to ) ){
+		$to = get_option( 'admin_email' );
+	}
+
+	$subject = sprintf( __( 'Job Application: %s', 'jobscout' ), $job_title );
+	$body    = "Name: " . $name . "\n";
+	$body   .= "Email: " . $email . "\n\n";
+	$body   .= "Message:\n" . $message . "\n\n";
+	$body   .= "Job: " . $job_title . "\n" . $job_link . "\n";
+
+	$headers = array( 'From: ' . $name . ' <' . $email . '>' );
+
+	$sent = wp_mail( $to, $subject, $body, $headers );
+
+	if ( $sent ){
+		wp_send_json_success( array( 'message' => __( 'Application submitted successfully.', 'jobscout' ) ) );
+	}else{
+		wp_send_json_error( array( 'message' => __( 'Failed to send application. Please try again later.', 'jobscout' ) ) );
+	}
+}
+add_action( 'wp_ajax_jobscout_apply_job', 'jobscout_handle_job_application' );
+add_action( 'wp_ajax_nopriv_jobscout_apply_job', 'jobscout_handle_job_application' );
