@@ -49,14 +49,19 @@ if ($post_slug) {
           <select id="search_location" name="search_location">
             <option value=""><?php esc_html_e('Tokyo', 'jobscout'); ?></option>
             <?php
+            foreach ($variable as $key => $value) {
+              
+            }
             global $wpdb;
             $locations = $wpdb->get_col("
-        SELECT DISTINCT meta_value 
-        FROM {$wpdb->postmeta}
-        WHERE meta_key = '_job_location'
-        AND meta_value != ''
-        ORDER BY meta_value ASC
-    ");
+          SELECT DISTINCT meta_value 
+          FROM {$wpdb->postmeta}
+          WHERE meta_key = '_job_location'
+          AND meta_value != ''
+          AND LOWER(meta_value) NOT LIKE 'u%'
+          ORDER BY meta_value DESC
+          LIMIT 10
+        ");
 
             if (!empty($locations)) {
               foreach ($locations as $loc) {
